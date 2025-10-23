@@ -11,23 +11,21 @@ let password2El = document.getElementById("password2-el");
 let passwordLengthEl = document.getElementById("password-length-el");
 let lengthDisplayEl = document.getElementById("length-display-el");
 
-document.addEventListener("DOMContentLoaded", function() {
-  let initialLength = Number(passwordLengthEl.value);
-  lengthDisplayEl.textContent = initialLength;
-  let percentageFilled = ((initialLength - 5) / (30 - 5)) * 100;
-  passwordLengthEl.style.background = `linear-gradient(to right, #55f991 0%, #55f991 ${percentageFilled}%, #273549 ${percentageFilled}%, #273549 100%)`;
-}); 
+document.addEventListener("DOMContentLoaded", inputslider);
 
-passwordLengthEl.addEventListener("input", function() {
-  let value = Number(this.value);
+passwordLengthEl.addEventListener("input", inputslider);
 
-  if (value > 4 && value < 31) {
-    lengthDisplayEl.textContent = value;
+function inputslider() {
+  let value = Number(passwordLengthEl.value);
+
+if (value >4 && value < 31) {
+   lengthDisplayEl.textContent = value;
   }
-  let percentageFilled = ((value - 5) / (30 - 5)) * 100;
-  this.style.background = `linear-gradient(to right, #55f991 0%, #55f991 ${percentageFilled}%, #273549 ${percentageFilled}%, #273549 100%)`;
 
-});
+  let percentageFilled = ((value - 5) / (30 - 5)) * 100;
+  passwordLengthEl.style.background = `linear-gradient(to right, #55f991 0%, #55f991 ${percentageFilled}%, #273549 ${percentageFilled}%, #273549 100%)`;
+}
+
 
 generatebuttonEL.addEventListener("click", generatepasswords);
 
