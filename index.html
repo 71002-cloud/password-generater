@@ -14,10 +14,17 @@
         <div class="line">
             <h1>Generate a <span class="highlight">random Password</span></h1>
             <p class="description">Never use an insecure password again.</p>
-            <button id="generate-button-el">Generate Password</button>
+            <div class="generator-container">
+                <button id="generate-button-el">Generate Password</button>
+                <div class="length-container">
+                    <input id="password-length-el" type="range" min="5" max="30" value="15">
+                    <span id="length-display-el">15</span>
+                </div>
+            </div>
         </div>
-    <div class="passwords-container">
-        <p id="password1-el" class="password" >Password</p> 
-        <p id="password2-el" class="password" >Password</p>
+        <div class="passwords-container">
+            <p id="password1-el" class="password" >Password</p> 
+            <p id="password2-el" class="password" >Password</p>
+        </div>
     </div>
 </body>

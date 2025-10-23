@@ -8,30 +8,44 @@ const characters = [
 let generatebuttonEL = document.getElementById("generate-button-el");
 let password1El = document.getElementById("password1-el");
 let password2El = document.getElementById("password2-el");
+let passwordLengthEl = document.getElementById("password-length-el");
+let lengthDisplayEl = document.getElementById("length-display-el");
+
+passwordLengthEl.addEventListener("input", function() {
+  if (passwordLengthEl.value > 4 && passwordLengthEl.value < 31) {
+    lengthDisplayEl.textContent = passwordLengthEl.value;
+  }
+});
 
 generatebuttonEL.addEventListener("click", generatepasswords);
 
-function generatepasswords() {
-    function symbols() {
-        for (let i = 0; i < characters.length; i++) {
-            let randomindex = Math.floor(Math.random() * characters.length);
-            let randomchar = characters[randomindex];
-            return randomchar;
-        }
 
-    }
-
-    password1El.textContent = symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols();
-    password2El.textContent = symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols() + symbols();
+function symbols() {
+  let randomindex = Math.floor(Math.random() * characters.length);
+  let randomchar = characters[randomindex];
+  return randomchar;
 }
 
-// Google hjalp mig her fra og ned, tror nok ikke jeg kommer til at husk sårn noget i hovdet lige forløbende :)
+
+function passwordgenerator(length) {
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += symbols();
+  }
+  return password;
+  }
+
+function generatepasswords() {
+  let passwordLength = Number(passwordLengthEl.value) || 15;
+  password1El.textContent = passwordgenerator(passwordLength);
+  password2El.textContent = passwordgenerator(passwordLength);
+}
 
 function copyPasswordToClipboard(event) {
   const password = event.target.textContent;
   navigator.clipboard.writeText(password)
     .then(() => {
-      alert("Password kopieret til udklipsholderen!🎉");
+      alert('"' + password + '" kopieret til udklipsholderen!🎉');
     })
     .catch(err => {
       console.error("Fejl ved kopiering:", err);
