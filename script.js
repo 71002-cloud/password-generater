@@ -28,7 +28,6 @@ if (value >4 && value < 31) {
 
 generatebuttonEL.addEventListener("click", generatepasswords);
 
-
 function symbols() {
   let randomindex = Math.floor(Math.random() * characters.length);
   let randomchar = characters[randomindex];
@@ -46,8 +45,13 @@ function passwordgenerator(length) {
 
 function generatepasswords() {
   let passwordLength = Number(passwordLengthEl.value) || 15;
+
+  if (passwordLength > 4 && passwordLength < 31) {
   password1El.textContent = passwordgenerator(passwordLength);
   password2El.textContent = passwordgenerator(passwordLength);
+  } else {
+    alert("Venligst vælg en længde mellem 5 og 30 tegn!⚠️");
+  }
 }
 
 function copyPasswordToClipboard(event) {
