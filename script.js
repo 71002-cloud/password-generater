@@ -26,7 +26,6 @@ if (value >4 && value < 31) {
   passwordLengthEl.style.background = `linear-gradient(to right, #55f991 0%, #55f991 ${percentageFilled}%, #273549 ${percentageFilled}%, #273549 100%)`;
 }
 
-
 generatebuttonEL.addEventListener("click", generatepasswords);
 
 
@@ -52,14 +51,20 @@ function generatepasswords() {
 }
 
 function copyPasswordToClipboard(event) {
+
+  if (event.target.textContent === "Password") {
+    alert("Generer venligst et kodeord først!⚠️");
+  } else {
+
   const password = event.target.textContent;
   navigator.clipboard.writeText(password)
     .then(() => {
-      alert('"' + password + '" kopieret til udklipsholderen!🎉');
+      alert(`"${password}" kopieret til udklipsholderen!🎉`);
     })
     .catch(err => {
       console.error("Fejl ved kopiering:", err);
     });
+  }
 }
 
 password1El.addEventListener("click", copyPasswordToClipboard);
